@@ -3,8 +3,8 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
-#include <random>	// Ëæ»úÊı
-#include <chrono>	// ÈÕÆÚÊ±¼ä
+#include <random>	// éšæœºæ•°
+#include <chrono>	// æ—¥æœŸæ—¶é—´
 #include <stdlib.h> 
 
 
@@ -90,7 +90,7 @@ std::pair<int, int> Snake::GetCurrentPosition(void) const
 
 	bool Snake::GoAhead(int i, int j)
 	{
-		auto nextPosition = GetNextPosition(i, j);	// ´¹Ö±·½Ïò²»±ä
+		auto nextPosition = GetNextPosition(i, j);	// å‚ç›´æ–¹å‘ä¸å˜
 		if (IsGameOver(nextPosition.first, nextPosition.second))
 		{
 			return false;
@@ -98,15 +98,15 @@ std::pair<int, int> Snake::GetCurrentPosition(void) const
 		if (ExistFood(nextPosition.first, nextPosition.second))
 		{
 			m_snakeBody.push_front(nextPosition);
-			// Ö±½Ó³Ôµô£¬Î²°Í²»ÓÃÒÆ¶¯
+			// ç›´æ¥åƒæ‰ï¼Œå°¾å·´ä¸ç”¨ç§»åŠ¨
 			m_playMatrix[nextPosition.first][nextPosition.second] = static_cast<char>(MatrixValueEnum::SNAKE_BODY);
-			CreateFood();	// Ëæ»úÉú³ÉÒ»¸öÊ³Îï
+			CreateFood();	// éšæœºç”Ÿæˆä¸€ä¸ªé£Ÿç‰©
 		}
 		else
 		{
 			m_snakeBody.push_front(nextPosition);	// PUSH HEAD==PUSH_BACK
 			m_playMatrix[nextPosition.first][nextPosition.second] = static_cast<char>(MatrixValueEnum::SNAKE_BODY);
-			// Î²°ÍÒÆ¶¯
+			// å°¾å·´ç§»åŠ¨
 			auto tail = m_snakeBody.back();
 			m_playMatrix[tail.first][tail.second] = static_cast<char>(MatrixValueEnum::NOTHING);
 			m_snakeBody.pop_back();
@@ -138,10 +138,10 @@ std::pair<int, int> Snake::GetCurrentPosition(void) const
 
 	void Snake::Play(void)
 	{
-		CreateFood();	// Ëæ»úÉú³ÉÒ»¸öÊ³Îï
+		CreateFood();	// éšæœºç”Ÿæˆä¸€ä¸ªé£Ÿç‰©
 		while (true)
 		{
-			system("cls");	// ÇåÆÁ£¬ Õâ²»ÊÇC++µÄÒ»²¿·Ö£¬ÊÇÏµÍ³µ÷ÓÃ¡£
+			system("cls");	// æ¸…å±ï¼Œ è¿™ä¸æ˜¯C++çš„ä¸€éƒ¨åˆ†ï¼Œæ˜¯ç³»ç»Ÿè°ƒç”¨ã€‚
 			// clear();
 			// ClearSreen();
 			PrintMatrix();
